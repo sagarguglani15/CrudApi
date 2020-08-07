@@ -1,4 +1,4 @@
-Simple Student and Couurse enrollment API to understand
+Simple Student and Course enrollment API to understand
 	the basics of CRUD
 
 C => Create		(using post request)
