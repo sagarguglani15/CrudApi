@@ -20,9 +20,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const auth= (req, res, next)=>{
+  if ( req.headers.token === '12345' ){
+    console.log('passed')
+    next()
+    return
+  }else{
+    console.error('Incorrect Token')
+    res.send('Authentication Failed!')
+  }
+}
+
 app.use('/', indexRouter);
-app.use('/students', studentsRouter);
-app.use('/courses',coursesRouter);
+app.use('/students', auth, studentsRouter);
+app.use('/courses', auth, coursesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
